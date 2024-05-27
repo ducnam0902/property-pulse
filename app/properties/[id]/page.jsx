@@ -8,19 +8,19 @@ import PropertyDetails from "@/components/PropertyDetails";
 import { FaArrowLeft } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
 import PropertyImages from "@/components/PropertyImages";
+import PropertyContactForm from "@/components/PropertyContactForm";
+
 const PropertiesIdPage = () => {
   const { id } = useParams();
 
   const [property, setProperty] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log(id);
 
   useEffect(() => {
     const fetchPropertyData = async () => {
       if (!id) return;
       try {
         const property = await fetchProperty(id);
-        console.log(property);
         setProperty(property);
       } catch (error) {
         console.error(error);
@@ -72,79 +72,7 @@ const PropertiesIdPage = () => {
                   </button>
 
                   {/* <!-- Contact Form --> */}
-                  <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h3 className="text-xl font-bold mb-6">
-                      Contact Property Manager
-                    </h3>
-                    <form>
-                      <div classNameName="mb-4">
-                        <label
-                          classNameName="block text-gray-700 text-sm font-bold mb-2"
-                          htmlFor="name"
-                        >
-                          Name:
-                        </label>
-                        <input
-                          classNameName="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          id="name"
-                          type="text"
-                          placeholder="Enter your name"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          className="block text-gray-700 text-sm font-bold mb-2"
-                          htmlFor="email"
-                        >
-                          Email:
-                        </label>
-                        <input
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          id="email"
-                          type="email"
-                          placeholder="Enter your email"
-                          required
-                        />
-                      </div>
-                      <div classNameName="mb-4">
-                        <label
-                          classNameName="block text-gray-700 text-sm font-bold mb-2"
-                          htmlFor="phone"
-                        >
-                          Phone:
-                        </label>
-                        <input
-                          classNameName="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          id="phone"
-                          type="text"
-                          placeholder="Enter your phone number"
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          className="block text-gray-700 text-sm font-bold mb-2"
-                          htmlFor="message"
-                        >
-                          Message:
-                        </label>
-                        <textarea
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 h-44 focus:outline-none focus:shadow-outline"
-                          id="message"
-                          placeholder="Enter your message"
-                        ></textarea>
-                      </div>
-                      <div>
-                        <button
-                          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center"
-                          type="submit"
-                        >
-                          <i className="fas fa-paper-plane mr-2"></i> Send
-                          Message
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                  <PropertyContactForm property={property} />
                 </aside>
               </div>
             </div>
